@@ -31,7 +31,7 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
     // driver Controller
-    new JoystickButton(driver, XboxController.Button.kA.value);
+    new JoystickButton(driver, XboxController.Button.kA.value).whenHeld(testRun);
     new JoystickButton(driver, XboxController.Button.kB.value)
         .whenPressed(new InstantCommand(() -> swerve.zeroHeading()));
     new JoystickButton(driver, XboxController.Button.kX.value);

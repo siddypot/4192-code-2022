@@ -3,6 +3,7 @@ package frc.robot.commands;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.*;
 
 public class DriveUp extends CommandBase{
@@ -22,8 +23,12 @@ public class DriveUp extends CommandBase{
 
     @Override
     public void execute(){
-        
-        swerve.drive(new Translation2d(0,0), pid.calculate(limelight.getOffsetPitch(), 0 ), false); 
+
+        double distanceToDrive = 0;
+        //if((limelight.getDistanceInch() > 150.0)) distanceToDrive = Constants.inchesToMeters((limelight.getDistanceInch() - 150));
+
+        swerve.drive(new Translation2d(0 ,0), (pid.calculate(limelight.getOffsetPitch(), 0 )), false); 
+        swerve.drive(new Translation2d(distanceToDrive ,0), 0, false); 
     }
 
     

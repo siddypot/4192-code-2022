@@ -23,4 +23,8 @@ public final class Constants {
     public static final double maxAngular = 13;
     public static boolean fieldOriented = true;
 
+    public static double inchesToMeters(double inches){
+        return (inches * .0254);
+    }
+
 }

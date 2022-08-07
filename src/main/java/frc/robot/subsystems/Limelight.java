@@ -14,7 +14,7 @@ public class Limelight extends SubsystemBase {
   public double getOffsetPitch() { //returns the angle of the pitch(y) from the crosshair (center of lens) to the target
     return table.getEntry("ty").getDouble(0.0);
   }
-  public double getDistance(){
+  public double getDistanceInch(){
 
     //god shooting distance 150 inches
     //god limelight angle is 25.6 degrees
@@ -27,14 +27,14 @@ public class Limelight extends SubsystemBase {
     double banana = Math.tan((getOffsetPitch() + 25.603));
     double distance = (boobalasmooga) / (banana); 
 
-    //if(getOffsetPitch() < 0 ) return -1; //target not found or too close
 
     return distance;
   }
 
+
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Distance", getDistance());
+    SmartDashboard.putNumber("Distance", getDistanceInch());
   }
 
 }
