@@ -16,15 +16,18 @@ public class Limelight extends SubsystemBase {
   }
   public double getDistance(){
 
+    //god shooting distance 150 inches
+    //god limelight angle is 25.6 degrees
+
     //height of hub = 96
     //height of limelight (to center of lens) = 24.122
     //angle of limelight = 15.89
 
     double boobalasmooga = (96 - 24.122);
-    double banana = Math.tan((getOffsetPitch() + 15.89));
-    double distance = (boobalasmooga) / (banana); //(96 - 24.122) / tan(ty + 15.89)
+    double banana = Math.tan((getOffsetPitch() + 25.603));
+    double distance = (boobalasmooga) / (banana); 
 
-    if(getOffsetPitch() < 0 ) return -1; //target not found
+    //if(getOffsetPitch() < 0 ) return -1; //target not found or too close
 
     return distance;
   }

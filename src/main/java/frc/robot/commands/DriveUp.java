@@ -22,7 +22,8 @@ public class DriveUp extends CommandBase{
 
     @Override
     public void execute(){
-        swerve.drive(new Translation2d(0,0), pid.calculate(limelight.getOffsetPitch(), 0 ), true);
+        
+        swerve.drive(new Translation2d(0,0), pid.calculate(limelight.getOffsetPitch(), 0 ), false); 
     }
 
     
