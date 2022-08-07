@@ -13,6 +13,7 @@ public class RobotContainer {
   private final Index  index = new Index();
   private final Intake intake = new Intake();
   private final SwerveMods swerve = new SwerveMods();
+  private final Limelight limelight = new Limelight();
   private final Joystick driver = new Joystick(0);
   private final Joystick operator = new Joystick(1);
   

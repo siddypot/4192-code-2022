@@ -12,7 +12,7 @@ public class Limelight extends SubsystemBase {
     return table.getEntry("tx").getDouble(0.0);
   }
   public double pitchToTarget() { //returns the angle of the pitch(y) from the crosshair (center of lens) to the target
-    return table.getEntry("ty").getDouble(0);
+    return table.getEntry("ty").getDouble(0.0);
   }
   public double getDistance(){
 
