@@ -21,6 +21,7 @@ public class RobotContainer {
   private final RunIntake runBackwardIntake = new RunIntake(-0.70, intake);
   private final TeleopSwerve teleopSwerve = new TeleopSwerve(swerve, driver, 1);
   private final TeleopSwerve teleopSwerveSlow = new TeleopSwerve(swerve, driver, 0.5);
+  private final TankToggle tankToggle = new TankToggle(swerve, driver, 1);
 
   public RobotContainer() {
     swerve.setDefaultCommand(teleopSwerve);
@@ -35,7 +36,7 @@ public class RobotContainer {
     new JoystickButton(driver, XboxController.Button.kX.value);
     new JoystickButton(driver, XboxController.Button.kY.value).toggleWhenPressed(new ChangeIntakePos(intake));
     new JoystickButton(driver, XboxController.Button.kRightBumper.value).whenHeld(teleopSwerveSlow);
-    new JoystickButton(driver, XboxController.Button.kLeftBumper.value).whileHeld(new TankToggle());
+    new JoystickButton(driver, XboxController.Button.kLeftBumper.value).whenHeld(tankToggle);
     new Trigger(() -> driver.getRawAxis(XboxController.Axis.kRightTrigger.value) > 0.2)
         .whileActiveContinuous(runForwardIntake);
     new Trigger(() -> driver.getRawAxis(XboxController.Axis.kLeftTrigger.value) > 0.2)

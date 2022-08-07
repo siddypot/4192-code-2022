@@ -36,17 +36,10 @@ public class TeleopSwerve extends CommandBase {
         x = (Math.abs(x) < 0.1) ? 0 : x;
         y = (Math.abs(y) < 0.1) ? 0 : y;
         turn = (Math.abs(turn) < 0.1) ? 0 : turn;
-        //x = xLimiter.calculate(x) * Constants.maxSpeed * overallSpeed;
-        //y = yLimiter.calculate(y) * Constants.maxSpeed * overallSpeed;
-        //turn = turnLimiter.calculate(turn) * Constants.maxAngular * overallSpeed;
         turn = turn * Constants.maxAngular;
-        /*if (Constants.fieldOriented)
-            speeds = ChassisSpeeds.fromFieldRelativeSpeeds(x, y, turn, swerve.getRotation());
-        else
-            speeds = new ChassisSpeeds(x, y, turn);*/
         translation = new Translation2d(x, y).times(Constants.maxSpeed).times(overallSpeed);
 
-        swerve.drive(translation, turn * .7, true, true);
+        swerve.drive(translation, turn * .7, true);
         
 
     }
