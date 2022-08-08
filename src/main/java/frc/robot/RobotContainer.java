@@ -1,6 +1,7 @@
 package frc.robot;
 
 import frc.robot.commands.*;
+import frc.robot.commands.ShootingCommands.autoAlign;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -16,7 +17,8 @@ public class RobotContainer {
   private final Limelight limelight = new Limelight();
   private final Joystick driver = new Joystick(0);
   private final Joystick operator = new Joystick(1);
-  
+
+  private final autoAlign align = new autoAlign(limelight, swerve);
   private final RunIntake runForwardIntake = new RunIntake(0.25, intake);
   private final RunIntake runBackwardIntake = new RunIntake(-0.70, intake);
   private final TeleopSwerve teleopSwerve = new TeleopSwerve(swerve, driver, 1);
@@ -30,7 +32,7 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
     // driver Controller
-    new JoystickButton(driver, XboxController.Button.kA.value).whenHeld(null);
+    new JoystickButton(driver, XboxController.Button.kA.value).whenHeld(align);
     new JoystickButton(driver, XboxController.Button.kB.value)
         .whenPressed(new InstantCommand(() -> swerve.zeroHeading()));
     new JoystickButton(driver, XboxController.Button.kX.value);
