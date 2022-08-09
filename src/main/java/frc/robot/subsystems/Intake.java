@@ -49,6 +49,7 @@ public class Intake extends SubsystemBase {
 
     @Override
     public void periodic(){
+        
         if(bBreak.get() && (currBall == false)){
             Constants.BALLS++;
             currBall=true;

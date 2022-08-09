@@ -6,8 +6,9 @@ import frc.robot.subsystems.*;
 
 public class intakeDropRun extends CommandBase {
 
-
+    //DEPRECATED CLASS, MUST ADD COLOR SENSOR -----
     
+    private boolean reverse = false;
 
     private final Intake intake;
     private final double power;
@@ -21,19 +22,29 @@ public class intakeDropRun extends CommandBase {
     public void initialize() {
         if (intake.getIntake()) intake.Down();
     }
+
     @Override
     public void execute(){
-        intake.setPower(power);
+        if(reverse)
+            intake.setPower(power);
+        
+        else
+            intake.setPower(power);
     }
+
     @Override
     public void end(boolean interrupted){
         intake.setPower(0);
         intake.Up();
     }
+
     @Override
     public boolean isFinished() {
-        int ballshaha = Constants.BALLS;
-        return (ballshaha == ballshaha+2);
+        if(!reverse){
+            int ballshaha = Constants.BALLS;
+            return (ballshaha == ballshaha+2);
+        }
+        return false;
     }
 
 

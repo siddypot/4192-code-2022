@@ -18,11 +18,15 @@ public class RobotContainer {
   private final Joystick driver = new Joystick(0);
   private final Joystick operator = new Joystick(1);
 
-  private final autoAlign align = new autoAlign(limelight, swerve);
+  
+  //private final intakeDropRun runForwardIntake = new intakeDropRun(intake , .25);
+  //private final intakeDropRun runBackwardIntake = new intakeDropRun(intake , -.25);
   
   private final RunIntake runForwardIntake = new RunIntake(0.25, intake);
   private final RunIntake runBackwardIntake = new RunIntake(-0.70, intake);
 
+
+  private final autoAlign align = new autoAlign(limelight, swerve);
   private final TeleopSwerve teleopSwerve = new TeleopSwerve(swerve, driver, 1);
   private final TeleopSwerve teleopSwerveSlow = new TeleopSwerve(swerve, driver, 0.5);
   private final TankToggle tankToggle = new TankToggle(swerve, driver, 1);
