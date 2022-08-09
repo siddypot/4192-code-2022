@@ -11,6 +11,8 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
 
     public static double climberStartPos;
+    
+    public static int BALLS = 0;
 
     public static final double trackWidth = Units.inchesToMeters(28);
     public static final double wheelBase = Units.inchesToMeters(28);

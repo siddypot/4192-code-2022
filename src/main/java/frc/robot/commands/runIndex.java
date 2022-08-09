@@ -28,10 +28,6 @@ public class runIndex extends CommandBase {
     }
 
     @Override
-    public void execute() {
-    }
-
-    @Override
     public void end(boolean interrupted) {
         index.runMotor(0);
         intake.setPower(0);
