@@ -24,13 +24,13 @@ public class SwerveMods extends SubsystemBase {
     private final AHRS gyro = new AHRS(SPI.Port.kMXP);
 
     public SwerveMods() {
-        new Thread(() -> {
+        /*new Thread(() -> {
             try {
                 Thread.sleep(1000);
                 zeroHeading();
             } catch (Exception e) {
             }
-        }).start();
+        }).start();*/
     }
 
     public Rotation2d getYaw() {

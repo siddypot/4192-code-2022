@@ -11,9 +11,11 @@ public class Limelight extends SubsystemBase {
   public double getOffsetYaw() { //returns the angle of the yaw(x) from the crosshair (center of lens) to the target
     return table.getEntry("tx").getDouble(0.0);
   }
+
   public double getOffsetPitch() { //returns the angle of the pitch(y) from the crosshair (center of lens) to the target
     return table.getEntry("ty").getDouble(0.0);
   }
+
   public double getDistanceInch(){
 
     //god shooting distance 150 inches
@@ -23,7 +25,7 @@ public class Limelight extends SubsystemBase {
     //height of limelight (to center of lens) = 24.122
     //angle of limelight = 15.89
 
-    double boobalasmooga = (96 - 24.122);
+    double boobalasmooga = (96 - 32.5);
     double banana = Math.tan((getOffsetPitch() + 25.603));
     double distance = (boobalasmooga) / (banana); 
 
@@ -35,6 +37,8 @@ public class Limelight extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putNumber("Distance", getDistanceInch());
+    SmartDashboard.putNumber("Limelight X dist", getOffsetYaw());
+    SmartDashboard.putNumber("Limelight Y dist", getOffsetPitch());
   }
 
 }

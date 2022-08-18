@@ -7,7 +7,7 @@ import frc.robot.subsystems.*;
 
 public class autoAlign extends CommandBase{
 
-    PIDController pid = new PIDController(0, 0, 0); //tune me 
+    PIDController pid = new PIDController(0.05, 0,.000005); //tune me 
     
     private Limelight limelight;
     private SwerveMods swerve;
@@ -17,7 +17,7 @@ public class autoAlign extends CommandBase{
     }
     @Override
     public void execute(){
-        swerve.drive(new Translation2d(0 ,0), (pid.calculate(limelight.getOffsetYaw(), 0)), false);
+        swerve.drive(new Translation2d(0 ,0), (pid.calculate(-limelight.getOffsetYaw(), 0)), false);
     }
 
     
