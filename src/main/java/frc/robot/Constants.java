@@ -30,7 +30,7 @@ public final class Constants {
     }
 
     public static double getFlywheelPower(double distance){
-
+        return 0;
     }
 
 }
