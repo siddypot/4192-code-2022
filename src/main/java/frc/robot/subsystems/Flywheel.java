@@ -67,11 +67,6 @@ public class Flywheel extends SubsystemBase {
     return shooterMotor.getSelectedSensorVelocity();
   }
 
-  public void twoMotorVelocity(double velo){
-    shooterMotor.set(ControlMode.Velocity, -velo*1);
-    shooterFollower.set(ControlMode.Velocity, velo*1.4);
-  }
-
   public void twoMotorPower(double power){
     shooterMotor.set(ControlMode.PercentOutput, -power*1);
     shooterFollower.set(ControlMode.PercentOutput, power*1.9);

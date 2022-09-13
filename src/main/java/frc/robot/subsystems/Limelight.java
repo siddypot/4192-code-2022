@@ -20,7 +20,9 @@ public class Limelight extends SubsystemBase {
 
     //god shooting distance 150 inches
     //god limelight angle is 25.6 degrees
-
+    int hubheight = 96;
+    double angleOfLL = 24.122;
+    double heightOfLL = 32.5;
     //height of hub = 96
     //height of limelight (to center of lens) = 24.122
     //angle of limelight = 15.89

@@ -29,4 +29,8 @@ public final class Constants {
         return (inches * .0254);
     }
 
+    public static double getFlywheelPower(double distance){
+
+    }
+
 }
