@@ -17,14 +17,15 @@ public class RobotContainer {
   private final Limelight limelight = new Limelight();
   private final Joystick driver = new Joystick(0);
   private final Joystick operator = new Joystick(1);
+  private final Flywheel flywheel = new Flywheel();
 
-  
   //private final intakeDropRun runForwardIntake = new intakeDropRun(intake , .25);
   //private final intakeDropRun runBackwardIntake = new intakeDropRun(intake , -.25);
   
   private final RunIntake runForwardIntake = new RunIntake(0.25, intake);
   private final RunIntake runBackwardIntake = new RunIntake(-0.70, intake);
 
+  private final FlywheelShoot highgoal = new FlywheelShoot(-7050, flywheel, true);
 
   private final autoAlign align = new autoAlign(limelight, swerve);
   private final TeleopSwerve teleopSwerve = new TeleopSwerve(swerve, driver, 1);
@@ -54,7 +55,7 @@ public class RobotContainer {
     new JoystickButton(operator, XboxController.Button.kA.value);
     new JoystickButton(operator, XboxController.Button.kB.value).whenHeld(new runIndex(index, intake,.18));
     new JoystickButton(operator, XboxController.Button.kX.value).whenHeld(new runIndex(index, intake, -.18));
-    new JoystickButton(operator, XboxController.Button.kY.value);
+    new JoystickButton(operator, XboxController.Button.kY.value).whenHeld(highgoal);
     new JoystickButton(operator, XboxController.Button.kRightBumper.value);
     new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
     new JoystickButton(operator, XboxController.Button.kBack.value);

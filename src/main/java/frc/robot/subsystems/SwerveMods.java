@@ -13,13 +13,13 @@ import frc.robot.Constants;
 
 public class SwerveMods extends SubsystemBase {
 
-    private final SwerveModules mod0 = new SwerveModules(29.0, 14, 15, 3);
+    private final SwerveModules mod0 = new SwerveModules(29.0, 14, 15, 3); // FL
 
-    private final SwerveModules mod1 = new SwerveModules(193.0,3,2, 1);
+    private final SwerveModules mod1 = new SwerveModules(193.0,3,2, 1); //back right
 
-    private final SwerveModules mod2 = new SwerveModules(363.0, 12, 13, 2);
+    private final SwerveModules mod2 = new SwerveModules(363.0, 12, 13, 2); //back left
 
-    private final SwerveModules mod3 = new SwerveModules(300, 1, 0, 0);
+    private final SwerveModules mod3 = new SwerveModules(300, 1, 0, 0); //front right
 
     private final AHRS gyro = new AHRS(SPI.Port.kMXP);
 

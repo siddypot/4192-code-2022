@@ -8,14 +8,24 @@ import frc.robot.subsystems.Flywheel;
 
 public class FlywheelShoot extends PIDCommand {
 
+    Flywheel f;
     public FlywheelShoot(double spd, Flywheel f, boolean hg){
-
+        
         super(
         new PIDController(.0000625, 0, 0), () -> f.getMainRate(), ()-> spd, output ->{
             if(hg) f.twoMotorPower(-output);
             if(!hg) f.twoMotorPowerLow(-output);
         }
         );
+
+        this.f=f;
+    }
+
+    @Override
+    public void end(boolean interrupted){
+
+        f.setPower(0);
+
     }
 
 }
