@@ -22,7 +22,7 @@ public class Limelight extends SubsystemBase {
     //god limelight angle is 25.6 degrees
     int hubheight = 96;
     double angleOfLL = 24.122;
-    double heightOfLL = 32.5;
+    double heightOfLL = 30.4;
     //height of hub = 96
     //height of limelight (to center of lens) = 24.122
     //angle of limelight = 15.89
