@@ -23,9 +23,8 @@ public class FlywheelShoot extends PIDCommand {
 
     @Override
     public void end(boolean interrupted){
-
-        f.setPower(0);
-
+         f.setPower(0);
+         f.twoMotorPower(0);
     }
 
 }

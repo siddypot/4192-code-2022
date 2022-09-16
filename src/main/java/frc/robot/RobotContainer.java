@@ -47,15 +47,15 @@ public class RobotContainer {
     new JoystickButton(driver, XboxController.Button.kRightBumper.value).whenHeld(teleopSwerveSlow);
     new JoystickButton(driver, XboxController.Button.kLeftBumper.value).whenHeld(tankToggle);
     new Trigger(() -> driver.getRawAxis(XboxController.Axis.kRightTrigger.value) > 0.2)
-        .whileActiveContinuous(runForwardIntake);
-    new Trigger(() -> driver.getRawAxis(XboxController.Axis.kLeftTrigger.value) > 0.2)
         .whileActiveContinuous(runBackwardIntake);
+    new Trigger(() -> driver.getRawAxis(XboxController.Axis.kLeftTrigger.value) > 0.2)
+        .whileActiveContinuous(runForwardIntake);
 
     // Operator Controller
-    new JoystickButton(operator, XboxController.Button.kA.value);
+    new JoystickButton(operator, XboxController.Button.kA.value).toggleWhenPressed(highgoal);
     new JoystickButton(operator, XboxController.Button.kB.value).whenHeld(new runIndex(index, intake,.18));
     new JoystickButton(operator, XboxController.Button.kX.value).whenHeld(new runIndex(index, intake, -.18));
-    new JoystickButton(operator, XboxController.Button.kY.value).whenHeld(highgoal);
+    new JoystickButton(operator, XboxController.Button.kY.value);
     new JoystickButton(operator, XboxController.Button.kRightBumper.value);
     new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
     new JoystickButton(operator, XboxController.Button.kBack.value);

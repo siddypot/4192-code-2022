@@ -15,7 +15,7 @@ public class AutoAlignThenShoot extends SequentialCommandGroup{
     SwerveMods s;
 
     private final autoAlign align = new autoAlign(l,s);
-    private final Wait wait = new Wait(5);
+    private final Wait wait = new Wait(2);
     private final driveToHub drive = new driveToHub(l, s);
 
     public AutoAlignThenShoot(Limelight l, SwerveMods s){

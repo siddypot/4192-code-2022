@@ -8,6 +8,7 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -35,6 +36,10 @@ public class SwerveMods extends SubsystemBase {
 
     public Rotation2d getYaw() {
         return Rotation2d.fromDegrees(360.0 - gyro.getYaw());
+    }
+
+    public double getYawAngle(){
+        return gyro.getYaw();
     }
 
     public void zeroHeading() {
@@ -67,7 +72,7 @@ public class SwerveMods extends SubsystemBase {
 
     @Override
     public void periodic() {
-
+        SmartDashboard.putNumber("angle", gyro.getYaw());
     }
 
     public void drive(Translation2d translation, double rotation, boolean fieldRelative) {

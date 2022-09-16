@@ -24,6 +24,13 @@ public class autoAlign extends CommandBase{
         double offset = -limelight.getOffsetYaw();
         swerve.drive(new Translation2d(0 ,0), (Math.abs(offset) > 1 ? pid.calculate(offset, 0) : 0), false);
     }
+    @Override
+    public boolean isFinished(){
+
+
+        return (-limelight.getOffsetYaw() == swerve.getYawAngle());
+
+    }
 
     
 }
