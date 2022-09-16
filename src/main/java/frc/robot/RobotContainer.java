@@ -18,6 +18,7 @@ public class RobotContainer {
   private final Joystick driver = new Joystick(0);
   private final Joystick operator = new Joystick(1);
   private final Flywheel flywheel = new Flywheel();
+  private final Climb climb = new Climb();
 
   //private final intakeDropRun runForwardIntake = new intakeDropRun(intake , .25);
   //private final intakeDropRun runBackwardIntake = new intakeDropRun(intake , -.25);
@@ -44,8 +45,8 @@ public class RobotContainer {
         .whenPressed(new InstantCommand(() -> swerve.zeroHeading()));
     new JoystickButton(driver, XboxController.Button.kX.value);
     new JoystickButton(driver, XboxController.Button.kY.value).toggleWhenPressed(new ChangeIntakePos(intake));
-    new JoystickButton(driver, XboxController.Button.kRightBumper.value).whenHeld(teleopSwerveSlow);
-    new JoystickButton(driver, XboxController.Button.kLeftBumper.value).whenHeld(tankToggle);
+    new JoystickButton(driver, XboxController.Button.kRightBumper.value).whenHeld(tankToggle);
+    new JoystickButton(driver, XboxController.Button.kLeftBumper.value).whenHeld(teleopSwerveSlow);
     new Trigger(() -> driver.getRawAxis(XboxController.Axis.kRightTrigger.value) > 0.2)
         .whileActiveContinuous(runBackwardIntake);
     new Trigger(() -> driver.getRawAxis(XboxController.Axis.kLeftTrigger.value) > 0.2)
@@ -58,7 +59,7 @@ public class RobotContainer {
     new JoystickButton(operator, XboxController.Button.kY.value);
     new JoystickButton(operator, XboxController.Button.kRightBumper.value);
     new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
-    new JoystickButton(operator, XboxController.Button.kBack.value);
+    new JoystickButton(operator, XboxController.Button.kBack.value).whenPressed(new changeClimbLegPos(climb));
     new JoystickButton(operator, XboxController.Button.kStart.value);
     new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
     new Trigger(() -> operator.getRawAxis(XboxController.Axis.kRightTrigger.value) > 0.2);

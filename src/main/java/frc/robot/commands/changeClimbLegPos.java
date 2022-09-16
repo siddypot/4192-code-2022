@@ -1,13 +1,14 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Climb;
 
-public class changeClimbLegPos extends CommandBase {
+public class changeClimbLegPos extends InstantCommand {
   private Climb climb;
   public changeClimbLegPos(Climb climb) {
     this.climb = climb;
-    addRequirements(climb);
   }
   @Override
   public void initialize() {
@@ -16,15 +17,9 @@ public class changeClimbLegPos extends CommandBase {
     else climb.setAngleDown();
     
   }
-  @Override
-  public void execute() {
-
-  }
-  @Override
   public void end(boolean interrupted) {
+    
   }
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+
+
 }

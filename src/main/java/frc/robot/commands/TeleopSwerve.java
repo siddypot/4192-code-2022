@@ -46,7 +46,7 @@ public class TeleopSwerve extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        swerve.stopModules();
+        
     }
 
     @Override

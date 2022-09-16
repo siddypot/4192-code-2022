@@ -44,9 +44,6 @@ public class Climb extends SubsystemBase {
         climber.set(Value.kReverse);
     }
 
-    public boolean retroreflective() {
-        return retroreflective.get();
-    }
 
     public void extendClimb(double velo) {
         climbMotorLeft.set(ControlMode.PercentOutput, velo);
