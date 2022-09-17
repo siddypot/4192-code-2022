@@ -7,6 +7,7 @@ import frc.robot.subsystems.Climb;
 public class moveArms extends CommandBase {
   private Climb climb;
   private double pow;
+  
   public moveArms(Climb climb, double power) {
     this.climb = climb;
     pow = power;
@@ -18,7 +19,7 @@ public class moveArms extends CommandBase {
     climb.extendClimbLeft(pow);
 
     climb.extendClimbRight(pow);
-    
+
   }
 
   @Override
