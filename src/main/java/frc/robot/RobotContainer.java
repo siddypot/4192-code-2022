@@ -5,14 +5,30 @@ import frc.robot.commands.DriveCommands.*;
 import frc.robot.commands.ShootingCommands.*;
 import frc.robot.commands.IntakeCommands.*;
 import frc.robot.subsystems.*;
+import frc.robot.subsystems.SwerveMods;
+
+import java.util.List;
+
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.controller.ProfiledPIDController;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.trajectory.Trajectory;
+import edu.wpi.first.math.trajectory.TrajectoryConfig;
+import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public class RobotContainer {
+
+  
   private final Index  index = new Index();
   private final Intake intake = new Intake();
   private final SwerveMods swerve = new SwerveMods();
@@ -70,6 +86,80 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return null;
+
+
+    /*
+        To do list: 
+
+        make limelight shoot and driveup work
+
+        get others to create a hub we can shoot to 
+
+        find kP values for x and y control of auton
+
+        create motion profile for 4 ball with varun
+
+        begin coding first 2 ball auton
+
+        finish drive up and shoot and get all desired values to shoot from
+
+        end with last 2 balls
+        
+        test at noland or whatever
+
+
+    */
+
+    
+
+    PIDController xControl, yControl;
+    ProfiledPIDController angularControl;
+
+    xControl = new PIDController(0, 0, 0);
+    yControl = new PIDController(0, 0, 0);
+    angularControl = new ProfiledPIDController(.15, 0, .000005, Constants.angleConstraints);
+    angularControl.enableContinuousInput(-Math.PI, Math.PI);
+
+
+
+    
+    TrajectoryConfig autonConfig = new TrajectoryConfig(Constants.maxSpeed, Constants.maxAccel);
+    autonConfig.setKinematics(Constants.swerveKinematics);
+
+    double endX = 1, endY = 0;
+    
+    Trajectory trajectory = TrajectoryGenerator.generateTrajectory(
+
+    new Pose2d(0,0,new Rotation2d(0))
+    ,
+    List.of(
+
+    new Translation2d(1,0)
+
+    ),
+
+    new Pose2d(endX,endY,Rotation2d.fromDegrees(0))
+    //end x and end y
+    
+    , autonConfig); 
+
+    SwerveControllerCommand autonCommand0 = new SwerveControllerCommand(
+      trajectory, 
+      swerve::getPose,
+      Constants.swerveKinematics, 
+      xControl, 
+      yControl, 
+      angularControl, 
+      swerve::setModuleStates, 
+      swerve
+    );
+    SequentialCommandGroup finalAutonCommand = new SequentialCommandGroup(
+      new InstantCommand(() -> swerve.resetOdometry(trajectory.getInitialPose())), 
+      autonCommand0,
+
+      
+      new InstantCommand(()-> swerve.stopModules()));
+
+    return finalAutonCommand;
   }
 }
