@@ -1,7 +1,9 @@
 package frc.robot;
 
-import frc.robot.commands.*;
-import frc.robot.commands.ShootingCommands.autoAlign;
+import frc.robot.commands.ClimbCommands.*;
+import frc.robot.commands.DriveCommands.*;
+import frc.robot.commands.ShootingCommands.*;
+import frc.robot.commands.IntakeCommands.*;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -56,7 +58,7 @@ public class RobotContainer {
     new JoystickButton(operator, XboxController.Button.kA.value).toggleWhenPressed(highgoal);
     new JoystickButton(operator, XboxController.Button.kB.value).whenHeld(new runIndex(index, intake,.18));
     new JoystickButton(operator, XboxController.Button.kX.value).whenHeld(new runIndex(index, intake, -.18));
-    new JoystickButton(operator, XboxController.Button.kY.value);
+    new JoystickButton(operator, XboxController.Button.kY.value).whenPressed(new climbHooks(climb));
     new JoystickButton(operator, XboxController.Button.kRightBumper.value);
     new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
     new JoystickButton(operator, XboxController.Button.kBack.value).whenPressed(new changeClimbLegPos(climb));

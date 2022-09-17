@@ -16,7 +16,6 @@ public class Climb extends SubsystemBase {
     private final DoubleSolenoid angleClimb = new DoubleSolenoid(PneumaticsModuleType.REVPH, 6, 9);// placeholders
 
     private final DoubleSolenoid climber = new DoubleSolenoid(PneumaticsModuleType.REVPH, 5, 10);
-    private DigitalInput retroreflective = new DigitalInput(9);
     private TalonFX climbMotorLeft = new TalonFX(5);
     private TalonFX climbMotorRight = new TalonFX(6);
 
@@ -45,7 +44,7 @@ public class Climb extends SubsystemBase {
     }
 
 
-    public void extendClimb(double velo) {
+    public void extendClimbLeft(double velo) {
         climbMotorLeft.set(ControlMode.PercentOutput, velo);
     }
 

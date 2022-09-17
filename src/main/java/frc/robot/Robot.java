@@ -1,14 +1,8 @@
 package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.cscore.CvSink;
-import edu.wpi.first.cscore.CvSource;
-import edu.wpi.first.cscore.MjpegServer;
 import edu.wpi.first.cscore.UsbCamera;
-import edu.wpi.first.cscore.VideoMode.PixelFormat;
 import edu.wpi.first.util.net.PortForwarder;
-import edu.wpi.first.vision.VisionPipeline;
-import edu.wpi.first.vision.VisionThread;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -17,14 +11,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 public class Robot extends TimedRobot {
 
 
-  private static final int IMG_WIDTH = 320;
-  private static final int IMG_HEIGHT = 240;
-
-  private VisionThread visionThread;
-  private double centerX = 0.0;
   private Command m_autonomousCommand;
-  private CvSource usbCamForGrip;
-  private final Object imgLock = new Object();
+
   private RobotContainer m_robotContainer;
 
   
@@ -37,14 +25,9 @@ public class Robot extends TimedRobot {
     PortForwarder.add(5805, "limelight.local", 5805);
 
 
-    UsbCamera usbCamera = new UsbCamera("USB Camera 0", 0);
-    MjpegServer mjpegServer1 = new MjpegServer("serve_USB Camera 0", 1181);
-    mjpegServer1.setSource(usbCamera);
-    CvSink cvSink = new CvSink("opencv_USB Camera 0");
-    cvSink.setSource(usbCamera);
-    CvSource outputStream = new CvSource("Blur", PixelFormat.kMJPEG, 640, 480, 30);
-    MjpegServer mjpegServer2 = new MjpegServer("serve_Blur", 1182);
-    mjpegServer2.setSource(outputStream);
+    UsbCamera camera = new UsbCamera("USB Camera 0", 0);
+    CameraServer.startAutomaticCapture();
+    
 
   }
 

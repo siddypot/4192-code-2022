@@ -1,4 +1,4 @@
-package frc.robot.commands.ShootingCommands;
+package frc.robot.commands.DriveCommands;
 
 //DEPRECATED DO NOT USE 
 
@@ -21,7 +21,7 @@ public class driveToHub extends CommandBase{
     @Override
     public void execute(){
         double distanceToDrive = 0;
-        if((limelight.getDistanceInch() > 150.0)) distanceToDrive = Constants.inchesToMeters((limelight.getDistanceInch() - 150));
+        if((limelight.getDistanceInch() > 150.0)) distanceToDrive = Constants.inchesToMeters(150-limelight.getDistanceInch());
         swerve.drive(new Translation2d(distanceToDrive,0), 0, false); 
     }
     

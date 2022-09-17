@@ -1,9 +1,7 @@
-package frc.robot.commands;
+package frc.robot.commands.DriveCommands;
 
 import frc.robot.Constants;
 import frc.robot.subsystems.SwerveMods;
-
-//import java.util.function.Supplier;
 
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.Joystick;
