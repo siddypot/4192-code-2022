@@ -1,6 +1,5 @@
 package frc.robot.commands.ShootingCommands;
 
-import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
