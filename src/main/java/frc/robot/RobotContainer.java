@@ -127,7 +127,7 @@ public class RobotContainer {
     autonConfig.setKinematics(Constants.swerveKinematics);
 
     double endX = 1, endY = 0;
-    
+  
     Trajectory trajectory = TrajectoryGenerator.generateTrajectory(
 
     new Pose2d(0,0,new Rotation2d(0))

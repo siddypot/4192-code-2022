@@ -34,4 +34,10 @@ public class runIndex extends CommandBase {
 
     }
 
+    @Override
+    public boolean isFinished(){
+        if(timer.get() > 3) return true;
+        return false;
+    }
+
 }

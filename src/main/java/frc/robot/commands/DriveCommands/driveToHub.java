@@ -1,6 +1,5 @@
 package frc.robot.commands.DriveCommands;
 
-//DEPRECATED DO NOT USE 
 
 
 import edu.wpi.first.math.geometry.Translation2d;
@@ -22,7 +21,7 @@ public class driveToHub extends CommandBase{
     public void execute(){
         double distanceToDrive = 0;
         if((limelight.getDistanceInch() > 150.0)) distanceToDrive = Constants.inchesToMeters(150-limelight.getDistanceInch());
-        swerve.drive(new Translation2d(distanceToDrive,0), 0, false); 
+        swerve.drive(new Translation2d(Constants.inchesToMeters(distanceToDrive),0), 0, false); 
     }
     
 }
