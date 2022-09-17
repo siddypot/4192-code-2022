@@ -6,9 +6,12 @@ package frc.robot;
 
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
+import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
 
 public final class Constants {
+
+    public static double maxArmHeight = 5; //in meters
 
     public static double climberStartPos;
     
@@ -23,6 +26,8 @@ public final class Constants {
             new Translation2d(-wheelBase / 2.0, -trackWidth / 2.0));
     public static final double maxSpeed = 4.5;
     public static final double maxAngular = 13;
+    public static final double maxAccel = 4.11;
+    public static final TrapezoidProfile.Constraints angleConstraints = new TrapezoidProfile.Constraints(maxSpeed, maxAccel);
     public static boolean fieldOriented = true;
 
     public static double inchesToMeters(double inches){

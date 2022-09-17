@@ -23,7 +23,7 @@ public class SwerveModules {
     private double angleOffset, angGearRatio = (12.8 / 1.0), driveGearRatio = (6.75 / 1.0);
     private final CANCoder angleEncoder;
     private final TalonFX driveMotor, turnMotor;
-    private final TalonFXConfiguration sDC, sAC; // swerve drive configuration , swerve angle configuration
+    private final TalonFXConfiguration sDC, sAC; 
     private final CANCoderConfiguration ccc;
     private SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward((0.667 / 12), (2.44 / 12), (0.27 / 12));
 

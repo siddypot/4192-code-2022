@@ -7,9 +7,6 @@ import frc.robot.subsystems.*;
 
 public class autoAlign extends CommandBase{
 
-    // PIDController pid = new PIDController(0.05, 0,.000005); //tune me (Sid's code)
-    // PIDController pid = new PIDController(.07, 0, .000005);
-    //PIDController pid = new PIDController(.06,0.05,0.005);
     PIDController pid = new PIDController(.15, 0, .000005);
 
     private Limelight limelight;

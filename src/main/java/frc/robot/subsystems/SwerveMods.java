@@ -2,10 +2,12 @@ package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
+import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -14,7 +16,7 @@ import frc.robot.Constants;
 
 public class SwerveMods extends SubsystemBase {
 
-    private final SwerveModules mod0 = new SwerveModules(29.0, 14, 15, 3); // FL
+    private final SwerveModules mod0 = new SwerveModules(29.0, 14, 15, 3); // front left
 
     private final SwerveModules mod1 = new SwerveModules(193.0,3,2, 1); //back right
 
@@ -23,6 +25,8 @@ public class SwerveMods extends SubsystemBase {
     private final SwerveModules mod3 = new SwerveModules(300, 1, 0, 0); //front right
 
     private final AHRS gyro = new AHRS(SPI.Port.kMXP);
+
+    private final SwerveDriveOdometry odometer = new SwerveDriveOdometry(Constants.swerveKinematics, new Rotation2d(0));
 
     public SwerveMods() {
         /*new Thread(() -> {
@@ -61,7 +65,10 @@ public class SwerveMods extends SubsystemBase {
         mod3.resetHeading();
     }
 
-    public void setModulesStates(SwerveModuleState[] desiredState) {
+    
+
+
+    public void setModuleStates(SwerveModuleState[] desiredState) {
         SwerveDriveKinematics.desaturateWheelSpeeds(desiredState, 4.5);
         mod0.setDesiredState(desiredState[0], false);
         mod1.setDesiredState(desiredState[1], false);
@@ -73,6 +80,7 @@ public class SwerveMods extends SubsystemBase {
     @Override
     public void periodic() {
         SmartDashboard.putNumber("angle", gyro.getYaw());
+        odometer.update(getRotation(),mod0.getState(),mod3.getState(),mod2.getState(),mod1.getState());
     }
 
     public void drive(Translation2d translation, double rotation, boolean fieldRelative) {
@@ -86,7 +94,15 @@ public class SwerveMods extends SubsystemBase {
 
         SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, Constants.maxSpeed);
 
-        setModulesStates(swerveModuleStates);
+        setModuleStates(swerveModuleStates);
     }
+
+    public Pose2d getPose(){
+        return odometer.getPoseMeters();
+    }
+
+    public void resetOdometry(Pose2d pose){
+        odometer.resetPosition(pose, getRotation());
+    } 
 
 }
