@@ -88,31 +88,9 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
 
 
-    /*
-        To do list: 
-
-        make limelight shoot and driveup work
-
-        get others to create a hub we can shoot to 
-
-        find kP values for x and y control of auton
-
-        create motion profile for 4 ball with varun
-
-        begin coding first 2 ball auton
-
-        finish drive up and shoot and get all desired values to shoot from
-
-        end with last 2 balls
-        
-        test at noland or whatever
-
-
-    */
-
     
 
-    PIDController xControl, yControl;
+    /*PIDController xControl, yControl;
     ProfiledPIDController angularControl;
 
     xControl = new PIDController(0, 0, 0);
@@ -125,23 +103,8 @@ public class RobotContainer {
     
     TrajectoryConfig autonConfig = new TrajectoryConfig(Constants.maxSpeed, Constants.maxAccel);
     autonConfig.setKinematics(Constants.swerveKinematics);
-
-    double endX = 1, endY = 0;
   
-    Trajectory trajectory = TrajectoryGenerator.generateTrajectory(
-
-    new Pose2d(0,0,new Rotation2d(0))
-    ,
-    List.of(
-
-    new Translation2d(1,0)
-
-    ),
-
-    new Pose2d(endX,endY,Rotation2d.fromDegrees(0))
-    //end x and end y
-    
-    , autonConfig); 
+    PathPlannerTrajectory trajectory = PathPlanner.loadPath("goodPath", 1.0, 1.00);
 
     SwerveControllerCommand autonCommand0 = new SwerveControllerCommand(
       trajectory, 
@@ -160,6 +123,7 @@ public class RobotContainer {
       
       new InstantCommand(()-> swerve.stopModules()));
 
-    return finalAutonCommand;
+    return finalAutonCommand;*/
+    return null;
   }
 }
