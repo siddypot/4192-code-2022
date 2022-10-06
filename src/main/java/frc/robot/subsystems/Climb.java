@@ -28,6 +28,8 @@ public class Climb extends SubsystemBase {
         climbMotorRight.setNeutralMode(NeutralMode.Brake);
         Constants.climberStartPos = getRightEncoder();
         activeHooks.set(Value.kReverse);
+        climerUp();
+        setAngleUp();
     }
 
     public void setAngleDown() {

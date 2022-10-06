@@ -10,9 +10,9 @@ public class changeClimbLegPos extends InstantCommand {
   }
   @Override
   public void initialize() {
-    if(!climb.getAngle()) climb.setAngleUp();
-      
-    else climb.setAngleDown();
+    if(climb.getAngle()) climb.setAngleDown();
+    
+    else climb.setAngleUp();
     
   }
   public void end(boolean interrupted) {

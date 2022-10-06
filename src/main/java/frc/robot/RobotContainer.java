@@ -9,6 +9,9 @@ import frc.robot.subsystems.SwerveMods;
 
 import java.util.List;
 
+import com.pathplanner.lib.PathPlanner;
+import com.pathplanner.lib.PathPlannerTrajectory;
+
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -44,6 +47,8 @@ public class RobotContainer {
   private final RunIntake runForwardIntake = new RunIntake(0.25, intake);
   private final RunIntake runBackwardIntake = new RunIntake(-0.70, intake);
 
+  private final moveArms movetheArms = new moveArms(climb, .8);
+  private final moveArms bahualiIsBetterThanAnyAmericanMovieEverMade = new moveArms(climb, -.8);
   private final FlywheelShoot highgoal = new FlywheelShoot(-7050, flywheel, true);
 
   private final autoAlign align = new autoAlign(limelight, swerve);
@@ -75,8 +80,8 @@ public class RobotContainer {
     new JoystickButton(operator, XboxController.Button.kB.value).whenHeld(new runIndex(index, intake,.18));
     new JoystickButton(operator, XboxController.Button.kX.value).whenHeld(new runIndex(index, intake, -.18));
     new JoystickButton(operator, XboxController.Button.kY.value).whenPressed(new climbHooks(climb));
-    new JoystickButton(operator, XboxController.Button.kRightBumper.value);
-    new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
+    new JoystickButton(operator, XboxController.Button.kRightBumper.value).whenHeld(movetheArms);
+    new JoystickButton(operator, XboxController.Button.kLeftBumper.value).whenHeld(bahualiIsBetterThanAnyAmericanMovieEverMade);
     new JoystickButton(operator, XboxController.Button.kBack.value).whenPressed(new changeClimbLegPos(climb));
     new JoystickButton(operator, XboxController.Button.kStart.value);
     new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
@@ -90,7 +95,7 @@ public class RobotContainer {
 
     
 
-    /*PIDController xControl, yControl;
+    PIDController xControl, yControl;
     ProfiledPIDController angularControl;
 
     xControl = new PIDController(0, 0, 0);
@@ -123,7 +128,7 @@ public class RobotContainer {
       
       new InstantCommand(()-> swerve.stopModules()));
 
-    return finalAutonCommand;*/
-    return null;
+    return finalAutonCommand;
+
   }
 }
