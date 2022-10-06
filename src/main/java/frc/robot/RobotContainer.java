@@ -5,7 +5,6 @@ import frc.robot.commands.DriveCommands.*;
 import frc.robot.commands.ShootingCommands.*;
 import frc.robot.commands.IntakeCommands.*;
 import frc.robot.subsystems.*;
-import frc.robot.subsystems.SwerveMods;
 
 import java.util.List;
 
@@ -49,6 +48,10 @@ public class RobotContainer {
 
   private final moveArms movetheArms = new moveArms(climb, .8);
   private final moveArms bahualiIsBetterThanAnyAmericanMovieEverMade = new moveArms(climb, -.8);
+
+  private final singleArm leftArm = new singleArm(climb, .4, true);
+  private final singleArm rightArm = new singleArm(climb, .4, false);
+
   private final FlywheelShoot highgoal = new FlywheelShoot(-7050, flywheel, true);
 
   private final autoAlign align = new autoAlign(limelight, swerve);
@@ -85,8 +88,8 @@ public class RobotContainer {
     new JoystickButton(operator, XboxController.Button.kBack.value).whenPressed(new changeClimbLegPos(climb));
     new JoystickButton(operator, XboxController.Button.kStart.value);
     new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
-    new Trigger(() -> operator.getRawAxis(XboxController.Axis.kRightTrigger.value) > 0.2);
-    new Trigger(() -> operator.getRawAxis(XboxController.Axis.kLeftTrigger.value) > 0.2);
+    new Trigger(() -> operator.getRawAxis(XboxController.Axis.kRightTrigger.value) > 0.2).whileActiveContinuous(rightArm);
+    new Trigger(() -> operator.getRawAxis(XboxController.Axis.kLeftTrigger.value) > 0.2).whileActiveContinuous(leftArm);
 
   }
 
