@@ -36,10 +36,10 @@ public class Flywheel extends SubsystemBase {
 
     s.configFactoryDefault();
     s.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
-    s.config_kP(0, .002);
+   // s.config_kP(0, .002);
     s.config_kI(0, 0);
     s.config_kD(0, 0);
-    s.config_kF(0, .0345);
+    //.s.config_kF(0, .0345);
     s.setNeutralMode(NeutralMode.Coast);
     s.setSensorPhase(true);
 
